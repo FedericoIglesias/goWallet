@@ -1,0 +1,16 @@
+{
+  "MODEl": [
+    {
+      "User": {
+        "ID": "int",
+        "Name": "string",
+        "LastName": "string",
+        "Email": ["string", { "format": "%@%.com" }],
+        "Phone": "int",
+        "Password": "string",
+        "Cvu": ["uint", { "format": "22digits" }],
+        "Alias": ["string", { "format": "word.word.word" }]
+      }
+    }
+  ]
+}
