@@ -1,0 +1,10 @@
+MODEl:
+  User:
+    ID: int
+    Name: string
+    LastName: string
+    email: string
+      format: %@%.com
+    phone: int
+    password: string
+  
