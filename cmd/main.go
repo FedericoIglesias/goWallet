@@ -1,27 +1,23 @@
 package main
 
-import "goWallet/internal/services"
+import (
+	"goWallet/cmd/api/routes"
+	"log"
+	"os"
 
-// "goWallet/cmd/api/routes"
-// "log"
-// "os"
-
-// "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
+)
 
 func main() {
 
-	str := services.CreateAlias()
+	if err := godotenv.Load("./.env"); err != nil {
+		log.Fatalf("Error: %s", err)
+	}
 
-	println(str)
+	r := routes.SetupRouter()
 
-	// if err := godotenv.Load("./.env"); err != nil {
-	// 	log.Fatalf("Error: %s", err)
-	// }
+	PORT := os.Getenv("PORT")
 
-	// r := routes.SetupRouter()
-
-	// PORT := os.Getenv("PORT")
-
-	// r.Run(":" + PORT)
+	r.Run(":" + PORT)
 
 }
