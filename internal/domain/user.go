@@ -10,3 +10,8 @@ type User struct {
 	Cvu      string `gorm:"not null ;unique" json:"cvu"`
 	Alias    string `gorm:"not null ;unique" json:"alias"`
 }
+
+type UserLogin struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
