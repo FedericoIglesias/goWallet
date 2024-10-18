@@ -1,7 +1,7 @@
 package db
 
 import (
-	"goWallet/internal/models"
+	"goWallet/internal/domain"
 	"log"
 	"os"
 
@@ -27,6 +27,6 @@ func ConnectDB() {
 		log.Println("Connect up to DB")
 	}
 
-	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&domain.User{})
 
 }

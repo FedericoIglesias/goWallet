@@ -1,8 +1,8 @@
 package main
 
 import (
+	"goWallet/cmd/api/routes"
 	"goWallet/internal/db"
-	"goWallet/internal/routes"
 	"log"
 	"os"
 

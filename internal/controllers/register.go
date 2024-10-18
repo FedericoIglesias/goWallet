@@ -1,14 +1,15 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
-	"goWallet/internal/models"
+	"goWallet/internal/domain"
 	"goWallet/internal/services"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Register(c *gin.Context) {
-	var user models.User
+	var user domain.User
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
