@@ -8,7 +8,7 @@ import (
 	"math/rand"
 )
 
-func Register(user *domain.User) error {
+func (s Services)Register(user *domain.User) error {
 	user.Cvu = CreateCVU()
 	return db.DB.Create(&user).Error
 }
