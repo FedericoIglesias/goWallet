@@ -15,11 +15,13 @@ func (h Handler) Login(c *gin.Context) {
 		return
 	}
 
-	if err := h.User.Login(userLogin); err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+	token, err := h.User.Login(userLogin)
+
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusAccepted, gin.H{"msg": "you are into papa!!!!"})
+	c.JSON(http.StatusAccepted, gin.H{"token": token})
 
 }
