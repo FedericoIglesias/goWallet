@@ -1,17 +1,32 @@
 package routes
 
 import (
-	"goWallet/internal/handler"
-	"goWallet/internal/services"
-
 	"github.com/gin-gonic/gin"
+	"goWallet/internal/handler"
+	"goWallet/internal/repositories/postgres"
+	"goWallet/internal/services"
+	"log"
+	"os"
 )
 
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 	api := r.Group("/api")
 
-	userService := services.Services{}
+	DSN := os.Getenv("DSN")
+
+	client, err := postgres.ConnectDB(DSN)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	userRepository := postgres.Repository{
+		Client: client,
+	}
+
+	userService := services.Services{
+		Repo: userRepository,
+	}
 
 	userHandler := handler.Handler{
 		User: userService,

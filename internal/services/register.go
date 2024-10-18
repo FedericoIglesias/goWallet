@@ -2,15 +2,14 @@ package services
 
 import (
 	"fmt"
-	"goWallet/internal/db"
 	"goWallet/internal/domain"
 
 	"math/rand"
 )
 
-func (s Services)Register(user *domain.User) error {
+func (s Services) Register(user *domain.User) error {
 	user.Cvu = CreateCVU()
-	return db.DB.Create(&user).Error
+	return s.Repo.Register(user)
 }
 
 func CreateCVU() string {
