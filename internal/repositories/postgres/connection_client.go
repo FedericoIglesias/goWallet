@@ -18,7 +18,7 @@ func ConnectDB(DSN string) (DB *gorm.DB, err error) {
 		log.Println("Connect up to DB")
 	}
 
-	DB.AutoMigrate(&domain.User{})
+	DB.AutoMigrate(&domain.User{}, &domain.Account{})
 
 	return DB, nil
 }
