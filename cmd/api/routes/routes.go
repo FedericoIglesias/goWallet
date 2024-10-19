@@ -1,10 +1,10 @@
 package routes
 
 import (
-	handler "goWallet/internal/handler/user"
+	"goWallet/cmd/api/handler/user"
 	postDB "goWallet/internal/repositories/postgres"
 	"goWallet/internal/repositories/postgres/user"
-	services "goWallet/internal/services/user"
+	"goWallet/internal/services/user"
 
 	"github.com/gin-gonic/gin"
 
