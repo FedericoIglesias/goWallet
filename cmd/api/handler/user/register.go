@@ -17,8 +17,8 @@ func (h Handler) Register(c *gin.Context) {
 
 	if err := h.User.Register(&user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
 
 	c.JSON(http.StatusCreated, gin.H{"data": user})
-
 }

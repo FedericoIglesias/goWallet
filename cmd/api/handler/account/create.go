@@ -17,6 +17,8 @@ func (h Handler) Create(c *gin.Context) {
 
 	if err := h.Account.Create(account); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
-	c.JSON(201, gin.H{"data": account})
+
+	c.JSON(201, gin.H{"data": &account})
 }

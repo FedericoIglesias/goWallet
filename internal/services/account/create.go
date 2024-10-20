@@ -1,6 +1,8 @@
 package servicesAccount
 
-import "goWallet/internal/domain"
+import (
+	"goWallet/internal/domain"
+)
 
 func (s Services) Create(account *domain.Account) error {
 
