@@ -1,7 +1,7 @@
 package domain
 
 type Account struct {
-	ID    uint
-	Cash  float64
-	Email string
+	ID    uint    `gorm:"autoincrement,unique" json:"id"`
+	Cash  float64 `gorm:"not null" json:"cash"`
+	Email string  `json:"email"`
 }

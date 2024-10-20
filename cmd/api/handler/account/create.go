@@ -1,4 +1,4 @@
-package user
+package account
 
 import (
 	"goWallet/internal/domain"
@@ -7,18 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h Handler) Register(c *gin.Context) {
-	var user domain.User
+func (h Handler) Create(c *gin.Context) {
+	var account *domain.Account
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	if err := c.ShouldBindJSON(&account); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if err := h.User.Register(&user); err != nil {
+	if err := h.Account.Create(account); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 	}
-
-	c.JSON(http.StatusCreated, gin.H{"data": user})
-
+	c.JSON(201, gin.H{"data": account})
 }

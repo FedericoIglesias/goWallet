@@ -1,7 +1,7 @@
-package service
+package servicesAccount
 
 import "goWallet/internal/ports"
 
 type Services struct {
-	Repo *ports.AccountRepo
+	Repo ports.AccountRepo
 }
