@@ -35,16 +35,17 @@ func SetupRouter() *gin.Engine {
 		Repo: userRepository,
 	}
 
-	userHandler := user.Handler{
-		User: userService,
-	}
-
 	accountRepository := postgresAccount.Repository{
 		Client: client,
 	}
 
 	accountService := servicesAccount.Services{
 		Repo: accountRepository,
+	}
+
+	userHandler := user.Handler{
+		User:    userService,
+		Account: accountService,
 	}
 
 	accountHandler := account.Handler{

@@ -9,7 +9,7 @@ type User struct {
 	Password string  `gorm:"not null" json:"password"`
 	Cvu      string  `gorm:"not null ;unique" json:"cvu"`
 	Alias    string  `gorm:"not null ;unique" json:"alias"`
-	Account  Account `gorm:"not null; foreignKey:Email"`
+	Account  Account `gorm:"not null; foreignKey:user_id"`
 }
 
 type UserLogin struct {
