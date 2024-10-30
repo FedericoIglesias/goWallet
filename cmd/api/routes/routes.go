@@ -8,6 +8,7 @@ import (
 	"goWallet/internal/repositories/postgres/user"
 	servicesAccount "goWallet/internal/services/account"
 	"goWallet/internal/services/user"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 
@@ -50,9 +51,9 @@ func SetupRouter() *gin.Engine {
 		Account: accountService,
 	}
 
-	api.GET("/status")
+	api.GET("/status", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "STATUS UP"}) })
 	api.POST("/register", userHandler.Register)
 	api.POST("/login", userHandler.Login)
-	api.POST("/account",accountHandler.Create)
+	api.POST("/account", accountHandler.Create)
 	return r
 }
