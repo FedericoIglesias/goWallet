@@ -1,4 +1,4 @@
-package account
+package handlerAccount
 
 import "goWallet/internal/ports"
 

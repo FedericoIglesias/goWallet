@@ -1,13 +1,12 @@
 package routes
 
 import (
-	"goWallet/cmd/api/handler/account"
-	"goWallet/cmd/api/handler/user"
+	handlerUser "goWallet/cmd/api/handler/user"
 	postDB "goWallet/internal/repositories/postgres"
 	postgresAccount "goWallet/internal/repositories/postgres/account"
-	"goWallet/internal/repositories/postgres/user"
+	postgresUser "goWallet/internal/repositories/postgres/user"
 	servicesAccount "goWallet/internal/services/account"
-	"goWallet/internal/services/user"
+	servicesUser "goWallet/internal/services/user"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -27,34 +26,30 @@ func SetupRouter() *gin.Engine {
 		log.Fatal(err)
 	}
 
-	userRepository := postgres.Repository{
+	userRepository := postgresUser.Repository{
 		Client: client,
-	}
-
-	userService := services.Services{
-		Repo: userRepository,
 	}
 
 	accountRepository := postgresAccount.Repository{
 		Client: client,
 	}
 
+	userService := servicesUser.Services{
+		Repo: userRepository,
+	}
+
 	accountService := servicesAccount.Services{
 		Repo: accountRepository,
 	}
 
-	userHandler := user.Handler{
+	userHandler := handlerUser.Handler{
 		User:    userService,
-		Account: accountService,
-	}
-
-	accountHandler := account.Handler{
 		Account: accountService,
 	}
 
 	api.GET("/status", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "STATUS UP"}) })
 	api.POST("/register", userHandler.Register)
 	api.POST("/login", userHandler.Login)
-	api.POST("/account", accountHandler.Create)
+
 	return r
 }
