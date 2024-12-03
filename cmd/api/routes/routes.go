@@ -5,7 +5,7 @@ import (
 	postDB "goWallet/internal/repositories/postgres"
 	postgresAccount "goWallet/internal/repositories/postgres/account"
 	postgresUser "goWallet/internal/repositories/postgres/user"
-	servicesAccount "goWallet/internal/services/account"
+	
 	servicesUser "goWallet/internal/services/user"
 	"net/http"
 
@@ -38,13 +38,12 @@ func SetupRouter() *gin.Engine {
 		Repo: userRepository,
 	}
 
-	accountService := servicesAccount.Services{
-		Repo: accountRepository,
-	}
+	// accountService := servicesAccount.Services{
+	// 	Repo: accountRepository,
+	// }
 
 	userHandler := handlerUser.Handler{
 		User:    userService,
-		Account: accountService,
 	}
 
 	api.GET("/status", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "STATUS UP"}) })

@@ -12,7 +12,11 @@ import (
 func (s Services) Register(user *domain.User) error {
 	user.Cvu = CreateCVU()
 	user.Alias = CreateAlias()
-	return s.Repo.Register(user)
+	if err := s.Repo.Register(user); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func CreateCVU() string {
