@@ -5,7 +5,7 @@ import (
 	"goWallet/internal/domain"
 )
 
-func (r *Repository) Get(account *domain.Account) (*domain.Account, error) {
+func (r Repository) Get(account *domain.Account) (*domain.Account, error) {
 	err := r.Client.First(&account).Error
 
 	if err != nil {

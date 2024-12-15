@@ -8,6 +8,6 @@ type UserSrv interface {
 }
 
 type UserRepo interface {
-	Register(user *domain.User) error
-	GetUser(user *domain.UserLogin) (domain.User, error)
+	Register(user *domain.User) (*domain.User, error)
+	GetUser(user *domain.UserLogin) (*domain.User, error)
 }

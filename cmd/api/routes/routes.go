@@ -5,7 +5,8 @@ import (
 	postDB "goWallet/internal/repositories/postgres"
 	postgresAccount "goWallet/internal/repositories/postgres/account"
 	postgresUser "goWallet/internal/repositories/postgres/user"
-	
+
+	// servicesAccount "goWallet/internal/services/account"
 	servicesUser "goWallet/internal/services/user"
 	"net/http"
 
@@ -36,6 +37,7 @@ func SetupRouter() *gin.Engine {
 
 	userService := servicesUser.Services{
 		Repo: userRepository,
+		RepoAccount: accountRepository,
 	}
 
 	// accountService := servicesAccount.Services{

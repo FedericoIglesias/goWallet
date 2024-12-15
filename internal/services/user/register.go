@@ -12,7 +12,11 @@ import (
 func (s Services) Register(user *domain.User) error {
 	user.Cvu = CreateCVU()
 	user.Alias = CreateAlias()
-	if err := s.Repo.Register(user); err != nil {
+	user, err := s.Repo.Register(user)
+	// Create Account
+
+	s.RepoAccount.Create(&domain.Account{Cash: 0.0, UserID: user.ID})
+	if err != nil {
 		return err
 	}
 
