@@ -10,9 +10,15 @@ type User struct {
 	Cvu      string  `gorm:"not null ;unique" json:"cvu"`
 	Alias    string  `gorm:"not null ;unique" json:"alias"`
 	Account  Account `gorm:"not null; foreignKey:user_id"`
+	Token    string  `gorm:"unique" json:"token"`
 }
 
 type UserLogin struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type UserLogout struct {
+	Email string `json:"email"`
+	Token string `json:"token"`
 }
