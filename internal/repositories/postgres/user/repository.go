@@ -1,9 +1,9 @@
 package postgresUser
 
 import (
-	"gorm.io/gorm"
+	"database/sql"
 )
 
 type Repository struct {
-	Client *gorm.DB
+	Client *sql.DB
 }
